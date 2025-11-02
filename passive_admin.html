@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/passive_admin.css">
+    <title>Passive Reports Panel</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-left login"><a href="index.html" aria-label="Home"><img src="picture/NCR-logo.png" alt=""></a></div>
+        <ul>
+            <li><a href="admin.html">Quick Report</a></li>
+            <li><a href="passive_admin.html">Passive Report</a></li>
+            <li><a href="volunteer_admin.html">Volunteer</a></li>
+        </ul>
+        <div class="login">
+            <a href="#"><span class="login-icon"><i class="fa-solid fa-user"></i></span></a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Passive Reports</h1>
+        <div id="loading" class="loading">Loading reports...</div>
+        <div id="error" class="error hidden"></div>
+        <table id="reports-table" class="hidden">
+            <thead>
+                <tr>
+                    <th id="gender">Survivor Gender</th>
+                    <th id="data">Date of Incident</th>
+                    <th id="reportType">Report Type</th>
+                    <th id="report">Description</th>
+                    <th id="location">Location</th>
+                </tr>
+            </thead>
+            <tbody id="reports-body"></tbody>
+        </table>
+    </div>
+    <script src="/passive_admin.js"></script>
+</body>
+</html>

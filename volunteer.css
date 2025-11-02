@@ -1,0 +1,242 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: margin-top 0.3s ease;
+    background-color: #E0E0E0;
+    /* Make footer sit after content and stick to bottom when content is short */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+:root {
+    --primary: #003087;
+    --accent: #F57C00;
+    --text: #111827;
+    --muted: #6B7280;
+    --border: #D1D5DB;
+    --bg: #FFFFFF;
+}
+
+.container {
+    width: 600px;
+
+    margin: 40px auto 0;
+    padding: 0 16px 40px; /* regular bottom padding now that footer isn't fixed */
+    flex: 1; /* grow to push footer down when content is short */
+}
+
+.form-section {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9CA3AF;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.15);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background: #F3F4F6;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.hint {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.02s ease;
+    text-decoration: none;
+    user-select: none;
+}
+
+.btn:hover {
+    background: #F9FAFB;
+    border-color: #C9D1DA;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.18);
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.btn.primary:hover {
+    background: #00266B;
+    border-color: #00266B;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+
+/* Footer Styling */
+.footer {
+    background-color: #003087;
+    color: #FFFFFF;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    bottom: 0;
+    position: relative;
+    width: 100%;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #F57C00;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.bottom p {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+
+    .footer {
+        min-height: 120px;
+        position: relative;
+    }
+
+    .footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .footer-section {
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section p {
+        font-size: 12px;
+    }
+}
+

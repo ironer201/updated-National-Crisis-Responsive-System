@@ -1,0 +1,95 @@
+/* Contact page — mobile-first responsive, keeps visual style */
+
+*{ box-sizing: border-box; }
+body{
+  background-color:#E0E0E0;
+  margin:0;
+  /* Make footer sit at the bottom without being fixed */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout wrapper */
+.contact-wrapper{ width:min(100%,1200px); margin:24px auto; padding:0 16px; flex: 1; }
+.contact-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
+/* Center grid items horizontally and limit width for single-card layouts */
+.contact-grid{ justify-items:center; }
+.contact-grid > *{ width:100%; max-width:720px; }
+
+/* Cards */
+.contact-card,
+.contact-form{ background:#FFFFFF; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:20px; animation:fadeUp .5s ease both; }
+.contact-form{ animation-delay:.08s; }
+
+.section-title{ 
+  margin:0 0 10px; 
+  color:#003087; 
+  font-size:1.25rem; 
+}
+
+/* Info list */
+.info-list{ 
+    list-style:none;
+    padding:0;
+    margin:0 0 12px;
+    display:grid;
+    gap:8px;
+}
+.info-list li{ 
+    color:#212121;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 20px;
+}
+.info-list i{ 
+  color:#003087; 
+}
+
+/* Social block */
+.social{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:8px; }
+.social{ background:#fafafa; border:1px solid #e9e9e9; border-radius:12px; padding:12px 14px; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+.social .name{ display:flex; align-items:center; padding-left:6px; }
+.social .name p{ margin:0; font-weight:700; color:#0f172a; letter-spacing:.2px; }
+.social .icon{ display:flex; gap:16px; }
+.social .icon a{ display:inline-flex; align-items:center; justify-content:center; height:40px; width:40px; border-radius:10px; background:#f5f5f5; border:1px solid #e6e6e6; transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.social .icon a:hover{ transform: translateY(-4px); background:#ebebeb; }
+.social .icon a:nth-child(1){ color:#1877F2; }
+.social .icon a:nth-child(2){ color:#006cf0; }
+.social .icon a:nth-child(3){ color:#000; }
+.social .icon i{ font-size:20px; }
+
+/* Footer (flow, not fixed) */
+footer{ 
+    width:100%; 
+    background:#003087; 
+    color:#fff; 
+    padding:20px 0; 
+    text-align:center; 
+    display:flex; 
+    flex-direction:column; 
+    position: relative; /* remain in normal flow */
+}
+.footer-content{ 
+    display:flex; 
+    justify-content:space-around; 
+    align-items:flex-start;
+     flex-wrap:wrap; 
+     padding:20px; 
+     gap:12px; }
+.footer-section{ flex:1; min-width:200px; margin:10px; }
+.footer-section h3{ margin-bottom:10px; font-size:18px; color:#F57C00; }
+
+.visually-hidden{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+
+/* Animation */
+@keyframes fadeUp{ from{ opacity:0; transform: translateY(10px); } to{ opacity:1; transform:none; } }
+
+/* Breakpoints */
+@media (min-width: 768px){
+  .contact-grid{ grid-template-columns: 1fr 1fr; }
+  /* If only the left card exists, center it across both columns */
+  .contact-grid > .left.contact-card{ grid-column:1 / -1; justify-self:center; max-width:900px; }
+}

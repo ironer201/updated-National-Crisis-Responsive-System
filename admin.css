@@ -1,0 +1,1019 @@
+/* volunteer_admin.css - No Scroll Version */
+*, *::before, *::after { box-sizing: border-box; }
+:root{
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --border: #e5e7eb;
+    --accent: #f1f5f9;
+    --shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    --error: #dc2626;
+    --success: #16a34a;
+    --warning: #d97706;
+}
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg: #0b1220;
+        --card: #0f172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --primary: #60a5fa;
+        --primary-dark: #3b82f6;
+        --border: #1f2a44;
+        --accent: #121a2b;
+        --shadow: 0 8px 24px rgba(0,0,0,0.45);
+        --error: #f87171;
+        --success: #4ade80;
+        --warning: #fbbf24;
+    }
+}
+
+html, body { 
+    height: 100vh; 
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body{
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Top navigation */
+/* Top navigation */
+nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 12px clamp(12px, 3vw, 24px);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: saturate(160%) blur(8px);
+    flex-shrink: 0;
+}
+
+.nav-left a{ 
+    display: inline-flex; 
+    align-items: center; 
+    text-decoration: none;
+}
+
+.nav-left img{
+    height: 42px;
+    width: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Center menu */
+nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 2vw, 28px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 2px solid transparent;
+}
+
+nav a:hover{
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary), transparent 92%);
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--primary), transparent 70%);
+}
+
+nav a:focus-visible{
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Active/selected link state */
+nav a.active,
+nav a[aria-current="page"],
+nav a[aria-selected="true"] {
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary), transparent 90%);
+    border: 2px solid var(--primary);
+    box-shadow: 
+        0 4px 12px color-mix(in oklab, var(--primary), transparent 70%),
+        inset 0 1px 0 color-mix(in oklab, white, transparent 80%);
+    transform: translateY(0);
+    font-weight: 700;
+}
+
+/* Pressed/click effect */
+nav a:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 2px 4px color-mix(in oklab, var(--primary), transparent 80%),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.1s ease;
+}
+
+/* Active state with indicator dot */
+nav a.active::before,
+nav a[aria-current="page"]::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary);
+    animation: pulse 2s infinite;
+}
+
+/* Active state with bottom border indicator */
+nav a.active::after,
+nav a[aria-current="page"]::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    box-shadow: 0 0 6px var(--primary);
+}
+
+/* Icon animation for active state */
+nav a.active i,
+nav a[aria-current="page"] i {
+    transform: scale(1.1);
+    color: var(--primary);
+}
+
+/* Pulse animation for active indicator */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+/* Right login icon */
+.login a{
+    padding: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--accent);
+    color: var(--text);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.login a:hover{
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px color-mix(in oklab, var(--primary), transparent 70%);
+}
+
+/* Active state for login icon */
+.login a.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 
+        0 0 0 3px color-mix(in oklab, var(--primary), transparent 70%),
+        0 4px 12px color-mix(in oklab, var(--primary), transparent 50%);
+}
+
+.login a.active::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 2px solid var(--card);
+    animation: pulse 2s infinite;
+}
+
+.login-icon{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Page container */
+.container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(16px, 4vw, 24px) clamp(12px, 3vw, 24px);
+    overflow: hidden;
+    max-height: calc(100vh - 80px);
+    gap: 20px;
+}
+
+.container h1{
+    margin: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--text), color-mix(in oklab, var(--primary), transparent 30%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* Stats cards */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.stat-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table container */
+.table-quickreport {
+    width: 100%;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+#reportTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Table header */
+#reportTable thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+#reportTable thead tr {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+#reportTable th {
+    padding: 16px 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+#reportTable th:hover {
+    background: color-mix(in oklab, var(--primary), black 10%);
+}
+
+#reportTable th::after {
+    content: '↕';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+#reportTable th:hover::after {
+    opacity: 1;
+}
+
+#reportTable th.sort-asc::after {
+    content: '↑';
+    opacity: 1;
+}
+
+#reportTable th.sort-desc::after {
+    content: '↓';
+    opacity: 1;
+}
+
+/* Table body */
+#reportTable tbody tr {
+    background: var(--card);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid color-mix(in oklab, var(--border), transparent 50%);
+}
+
+#reportTable tbody tr:last-child {
+    border-bottom: none;
+}
+
+#reportTable tbody tr:hover {
+    background: color-mix(in oklab, var(--primary), transparent 96%);
+    transform: translateX(2px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+#reportTable tbody tr:nth-child(even) {
+    background: color-mix(in oklab, var(--accent), transparent 40%);
+}
+
+#reportTable tbody tr:nth-child(even):hover {
+    background: color-mix(in oklab, var(--primary), transparent 94%);
+}
+
+#reportTable td {
+    padding: 14px 12px;
+    color: var(--text);
+    font-size: 0.95rem;
+    border: none;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+/* Column specific styles */
+#reportTable td:first-child {
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* ID column */
+#reportTable td:nth-child(1) {
+    width: 8%;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary);
+    background: color-mix(in oklab, var(--primary), transparent 98%);
+    border-right: 1px solid color-mix(in oklab, var(--border), transparent 30%);
+}
+
+/* Report column */
+#reportTable td:nth-child(2) {
+    width: 45%;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+/* Location column */
+#reportTable td:nth-child(3) {
+    width: 20%;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Date column */
+#reportTable td:nth-child(4) {
+    width: 12%;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Time column */
+#reportTable td:nth-child(5) {
+    width: 15%;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Status indicators for reports */
+.report-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.status-new {
+    background: color-mix(in oklab, var(--primary), transparent 90%);
+    color: var(--primary);
+}
+
+.status-in-progress {
+    background: color-mix(in oklab, var(--warning), transparent 90%);
+    color: var(--warning);
+}
+
+.status-resolved {
+    background: color-mix(in oklab, var(--success), transparent 90%);
+    color: var(--success);
+}
+
+.status-urgent {
+    background: color-mix(in oklab, var(--error), transparent 90%);
+    color: var(--error);
+}
+
+/* Report text with ellipsis for long content */
+.report-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    max-height: 2.8em;
+}
+
+/* Location pin style */
+.location-pin {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.location-pin::before {
+    content: '📍';
+    font-size: 0.8rem;
+}
+
+/* Action buttons for each row */
+.report-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.action-btn {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.action-view {
+    background: color-mix(in oklab, var(--primary), transparent 90%);
+    color: var(--primary);
+}
+
+.action-view:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.action-edit {
+    background: color-mix(in oklab, var(--warning), transparent 90%);
+    color: var(--warning);
+}
+
+.action-edit:hover {
+    background: var(--warning);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.action-delete {
+    background: color-mix(in oklab, var(--error), transparent 90%);
+    color: var(--error);
+}
+
+.action-delete:hover {
+    background: var(--error);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Empty state */
+#reportTable tbody:empty::after {
+    content: 'No reports found';
+    display: block;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    font-style: italic;
+    background: var(--accent);
+}
+
+/* Loading state */
+#reportTable.loading tbody tr {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.search-box {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--text);
+    font-size: 0.9rem;
+    width: 200px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary), transparent 85%);
+}
+
+/* Modern Table Design */
+.volunteer-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-scroll-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+.volunteer-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+/* Table header */
+.volunteer-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.volunteer-table thead tr {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    backdrop-filter: blur(10px);
+}
+
+.volunteer-table th {
+    padding: 16px 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.volunteer-table th:hover {
+    background: color-mix(in oklab, var(--primary), black 10%);
+}
+
+.volunteer-table th::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid rgba(255,255,255,0.6);
+    opacity: 0.6;
+}
+
+.volunteer-table th.sort-asc::after {
+    border-top: none;
+    border-bottom: 4px solid white;
+    opacity: 1;
+}
+
+.volunteer-table th.sort-desc::after {
+    border-top: 4px solid white;
+    opacity: 1;
+}
+
+/* Table body */
+.volunteer-table tbody tr {
+    background: var(--card);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid color-mix(in oklab, var(--border), transparent 50%);
+}
+
+.volunteer-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.volunteer-table tbody tr:hover {
+    background: color-mix(in oklab, var(--primary), transparent 95%);
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.volunteer-table tbody tr:nth-child(even) {
+    background: color-mix(in oklab, var(--accent), transparent 60%);
+}
+
+.volunteer-table tbody tr:nth-child(even):hover {
+    background: color-mix(in oklab, var(--primary), transparent 92%);
+}
+
+.volunteer-table td {
+    padding: 14px 12px;
+    color: var(--text);
+    font-size: 0.95rem;
+    border: none;
+    vertical-align: middle;
+}
+
+/* Column specific styles */
+.volunteer-table td:first-child {
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Courier New', monospace;
+}
+
+.volunteer-table td:nth-child(3) {
+    font-weight: 600;
+}
+
+.volunteer-table td:nth-child(4) {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.status-active {
+    background: color-mix(in oklab, var(--success), transparent 90%);
+    color: var(--success);
+    border: 1px solid color-mix(in oklab, var(--success), transparent 70%);
+}
+
+.status-pending {
+    background: color-mix(in oklab, var(--warning), transparent 90%);
+    color: var(--warning);
+    border: 1px solid color-mix(in oklab, var(--warning), transparent 70%);
+}
+
+.status-inactive {
+    background: color-mix(in oklab, var(--muted), transparent 90%);
+    color: var(--muted);
+    border: 1px solid color-mix(in oklab, var(--muted), transparent 70%);
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in oklab, var(--primary), transparent 60%);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: color-mix(in oklab, var(--primary), transparent 95%);
+}
+
+/* Form styles */
+.test{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    background: var(--card);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+textarea{
+    padding: 12px;
+    font-size: 16px;
+    resize: none;
+    height: 120px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--text);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary), transparent 85%);
+}
+
+/* Style the button */
+button{
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:hover{
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in oklab, var(--primary), transparent 50%);
+}
+
+button:active{
+    transform: translateY(0);
+}
+
+/* Compact on small screens */
+@media (max-width: 768px){
+    nav{ 
+        padding: 8px 12px; 
+        gap: 12px;
+        grid-template-columns: auto 1fr;
+    }
+    
+    nav ul{ 
+        display: none; 
+    }
+    
+    .nav-left img{ 
+        height: 36px; 
+    }
+    
+    .container{
+        padding: 12px;
+        gap: 16px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 16px;
+    }
+    
+    .table-header {
+        padding: 16px 16px 0;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
+    
+    .volunteer-table th,
+    .volunteer-table td {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    form {
+        margin: 0;
+        padding: 20px;
+    }
+}
+
+/* Feedback states */
+.hidden{ display: none !important; }
+
+.loading,
+.error{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: var(--shadow);
+    margin: 20px 0;
+}
+
+.loading::before{
+    content: "";
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2.5px solid color-mix(in oklab, var(--primary), transparent 60%);
+    border-top-color: var(--primary);
+    animation: spin 1s linear infinite;
+}
+
+.error{
+    color: var(--error);
+    border-color: color-mix(in oklab, var(--error), transparent 70%);
+    background: color-mix(in oklab, var(--error), transparent 95%);
+}
+
+.success {
+    color: var(--success);
+    border-color: color-mix(in oklab, var(--success), transparent 70%);
+    background: color-mix(in oklab, var(--success), transparent 95%);
+}
+
+@keyframes spin { 
+    to { transform: rotate(360deg); } 
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+    .loading::before{ animation: none; border-color: var(--primary); }
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

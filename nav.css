@@ -1,0 +1,128 @@
+/* Navigation Bar (legacy baseline for pages using plain <nav>) */
+nav{
+    background-color:#003087;
+    position: sticky; top: 0; width: 100%; z-index: 1000;
+    display: flex;
+}
+/* Fit logo image inside the navbar */
+
+/* Prevent logo container from constraining the image */
+.nav-left.login {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 50px;           /* matches navbar height */
+  width: auto;
+  padding: 0 10px;
+}
+.nav-left.login a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.nav-left.login img {
+  height: 40px;           /* fits cleanly inside navbar */
+  width: auto;            /* preserve aspect ratio */
+  object-fit: contain;
+  display: block;
+}
+
+/* Explicit sizing for the responsive navbar brand */
+.nav-left img{ height:40px; width:40px; display:block; }
+nav ul{
+    width: 100%; 
+    list-style: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+nav ul li{ height: 50px; }
+nav ul li a{
+    height: 100%; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 25px; 
+    text-decoration: none;
+     color: white; 
+     transition: .3s ease;
+}
+li :hover{ background-color: #6EB1D6; }
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: margin-top 0.3s ease;
+    background-color: #dedede;
+}
+
+
+
+/* logo and login */
+
+.login{
+    height: 50px;
+    width: 80px;
+    position: relative;
+    display: flex;
+    align-items: center; justify-content: center;
+    border-radius: 10px;
+    transition: .5s ease;
+    margin-left: 10px;
+    margin-right: 10px;
+  }    
+.login a{
+    margin-top: 0;
+    color: black;
+    text-decoration: none;
+}
+.login span{
+    color: black;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.login:hover{
+    background-color: #6EB1D6 ; 
+}
+
+/* Hide logo in legacy <nav> on small screens */
+@media (max-width: 767px){
+  nav .nav-left.login{ display: none !important; }
+}
+
+/* New responsive navbar for pages using <nav class="nav"> */
+.nav{ background-color:#003087; position: sticky; top:0; width:100%; z-index:1000; display:grid; grid-template-columns:40px auto 1fr auto; align-items:center; gap:.5rem; padding:.25rem .75rem; }
+.nav-left{ grid-column: 2; }
+.nav-right{ grid-column: 4; justify-self: end; }
+.nav-toggle{ grid-column: 1; }
+.nav-left{ display: none; }
+.nav .login .login-icon{ color:#fff; font-size:1.25rem; }
+.nav .login a, .nav .login span{ color:#fff; }
+.nav-toggle{ display:inline-flex; align-items:center; justify-content:center; height:40px; width:40px; background:transparent; color:#fff; border:1px solid rgba(255,255,255,.3); border-radius:8px; cursor:pointer; }
+.nav-toggle:hover{ background: rgba(255,255,255,.1); }
+.nav-toggle .icon-close{ display:none; }
+.nav.is-open .nav-toggle .icon-bars{ display:none; }
+.nav.is-open .nav-toggle .icon-close{ display:inline-block; }
+.nav-list{ list-style:none; display:none; gap:.25rem; justify-content:center; align-items:center; }
+.nav-list.open{ display:flex; flex-direction:column; grid-column:1 / -1; padding:.5rem 0; }
+.nav.is-open .nav-right{ display: none; }
+.nav-list li a{ display:block; padding:.5rem 1rem; text-decoration:none; color:#fff; border-radius:8px; transition: background-color .3s ease; }
+.nav-list li a:hover, .nav-list li a:focus{ background-color:#6EB1D6; }
+
+/* Breakpoints */
+@media (min-width: 768px){
+    .nav{ grid-template-columns:auto 1fr auto; }
+  .nav-toggle{ display:none; }
+    .nav-left{ grid-column: 1; display:flex; align-items:center; }
+    .nav-right{ grid-column: 3; }
+  .nav-list{ display:flex !important; flex-direction:row; justify-content:center; }
+        .nav.is-open .nav-right{ display: flex; }
+}

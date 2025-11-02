@@ -1,0 +1,472 @@
+/* General Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+    --brand: #003087;
+    --brand-2: #0B2149;
+    --accent: #6EB1D6;
+    --danger: #D32F2F;
+    --danger-700:#B71C1C;
+    --surface: #FFFFFF;
+    --bg: #E0E0E0;
+    --text: #212121;
+    --muted: #7d7878;
+    --shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+/* Body Styling */
+html,body{ height:100%; }
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* logo and login */
+.login{
+    height: 48px;
+    min-width: 64px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: background-color .3s ease;
+    margin-inline: .5rem;
+}
+.login a{ color:var(--surface); text-decoration: none; font-weight: 600; }
+.login .login-icon{ color: var(--surface); font-size: 1.25rem; }
+.login:hover{ background-color: var(--accent); }
+
+/* Navigation Bar */
+.nav{
+    background-color: var(--brand);
+    position: sticky; top: 0;
+    width: 100%; z-index: 1000;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+    gap: .5rem; padding: .25rem .75rem;
+}
+.nav-left.login {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;               /* matches navbar height */
+  width: auto;
+  padding-inline: .5rem;
+}
+.nav-left.login a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+}
+.nav-left.login img {
+  height: 40px;               /* fits neatly inside navbar */
+  width: auto;                /* preserves aspect ratio */
+  object-fit: contain;
+  display: block;
+  filter: none;               /* avoid accidental inherited filters */
+}
+.nav-toggle{ 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    height: 40px; width: 40px; 
+    background: transparent;
+    color: #fff; 
+    border: 1px solid rgba(255,255,255,.3); 
+    border-radius: 8px; 
+    cursor: pointer; 
+}
+.nav-toggle:hover{ 
+    background: rgba(255,255,255,.1); 
+}
+.nav-list{
+    list-style: none; display: none; /* mobile default */
+    gap: .25rem; justify-content: center; align-items: center;
+}
+.nav-list.open{ 
+    display: flex; 
+    flex-direction: column; 
+    grid-column: 1 / -1; 
+    padding: .5rem 0; 
+}
+.nav-list li a{
+    display: block; 
+    padding: .5rem 1rem; 
+    text-decoration: none; 
+    color: #fff; 
+    border-radius: 8px; 
+    transition: background-color .3s ease;
+}
+.nav-list li a:hover, .nav-list li a:focus{ background-color: var(--accent); }
+
+/* headline in the web*/
+.headline{
+    min-height: 72px; width: 100%;
+    display:flex; align-items:center; justify-content:center;
+    text-align: center;
+    background-color: var(--brand-2);
+    padding: .5rem;
+}
+.headline h1{
+    color: #FFFFFF;
+    margin-top: 4px;
+    font-size: clamp(1.25rem, 2.5vw + .5rem, 2.25rem);
+}
+/* report part*/
+
+.report {
+    display: flex;
+    flex-direction: column; /* Stack textarea and button vertically */
+    align-items: center; /* Center contents */
+    width: min(100%, 960px);
+    margin: 0 auto; /* Center form horizontally */
+}
+.quick-report{
+    margin-top: 0px;
+    text-align: center;
+    padding: 1rem .75rem 0;
+    margin-bottom: 20px;
+}
+.report-head{
+    font-weight: bold;
+    font-size: clamp(1.125rem, 1.5vw + .75rem, 1.75rem);
+    /* margin-top: 20px; */
+    color: #212121;
+}
+.quick-report textarea{
+    width: 100%;
+    font-family: "Times New Roman", Times, serif;
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    font-size: 1rem;
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid rgba(0,0,0,.1);
+    outline: none; 
+    resize: vertical;
+    border-radius: 10px;
+    min-height: 160px;
+}
+.report-meta{ display:flex; gap:.5rem; align-items:center; justify-content:center; margin-top: .5rem; }
+.quick-report label{ font-size: 1rem; color: var(--text); }
+.check{ width: 18px; height: 18px; }
+button{
+    min-width: 140px; height: 44px; margin: .75rem 0 0;
+    display: inline-flex; justify-content: center; align-items: center;
+    border-radius: 10px; border: none;
+    background-color: var(--danger); color: #FFFFFF;
+    font-size: 1rem; cursor: pointer; transition: background-color .3s ease, transform .1s ease;
+}
+button:hover{ background-color: #f54444; }
+button:active{ transform: translateY(1px); }
+button:focus{ outline: 2px solid var(--accent); outline-offset: 2px; }
+/* pop-up */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    background-color: var(--surface);
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none; /* Initially hidden */
+}
+
+.popup.show {
+    display: block; /* Show the popup */
+    opacity: 1; /* Fully visible */
+}
+
+.popup.hide {
+    opacity: 0; /* Fade out */
+    transition: opacity 0.5s ease;
+}
+/* passive report information */
+
+
+/* Passive Report Section */
+
+.passive-report {
+    width: 100%;
+    background-image: url('picture/landerison.jpg'); /* Path to your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; z-index: 0; /* Base layer */
+}
+.passive-report .bothside{
+    width: 100%;
+    display: grid; grid-template-columns: 1fr; gap: 1rem;
+    padding: 1rem .75rem 1.5rem;
+}
+
+.passive-report::before {
+    content: ""; /* Creates a pseudo-element */
+    position: absolute; inset: 0;
+    background-image: inherit; /* Same image */
+    background-size: inherit; background-position: inherit; background-repeat: inherit;
+    filter: blur(5px); /* Blurs the image */
+    z-index: -1; /* Places it behind all content */
+}
+
+.passive-report h2 {
+    padding-top: 1rem;
+    text-align: center;
+    font-size: clamp(1.125rem, 1.5vw + .75rem, 1.75rem);
+    color: #000000; 
+    position: relative; z-index: 1;
+}
+
+.passive-report .left-side,
+.passive-report .right-side {
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    position: relative; /* Keeps content above blur */
+    z-index: 1; /* Above blurred layer */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid var(--brand);
+}
+
+.passive-report .left-side { padding-top: 24px; }
+
+.passive-report .left-side .define { font-size: 1rem; color: black; }
+
+.passive-report .right-side{ padding-top: 10px; }
+
+.passive-report .right-side ul {
+    padding-left: 20px;
+    text-align: left;
+    list-style-type: disc;
+    max-width: 48rem; margin: 0 auto;
+}
+
+.passive-report .right-side li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.passive-report button {
+    width: auto;
+    min-height: 48px;
+    margin: 10px;
+    padding-inline: 48px;
+    border-radius: 10px;
+    background-color: var(--danger);
+    color: #FFFFFF;
+    font-size: 1rem;
+    cursor: pointer; position: relative; z-index: 1;
+}
+
+.passive-report button:hover { background-color: var(--danger-700); }
+.passive-report .btn1{ display:flex; justify-content:center; width:100%; padding-bottom: 16px; }
+/* slide show picture */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Responsive height */
+    overflow: hidden;
+    display: block;
+    background-color: #cfcccc;
+}
+
+.slide {
+    position: absolute; /* Stack slides on top of each other */
+    inset: 0;
+    display: grid; place-items: end center; /* caption at bottom */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1s ease-in-out; /* Smooth fade effect */
+}
+
+.slide.active { opacity: 1; /* Show active slide */ }
+
+.slide img { width: 100%; height: 100%; object-fit: cover; display:block; }
+.slide .caption {
+    margin: 0 0 1rem; /* bottom spacing */
+    font-size: clamp(1rem, 1.5vw + .5rem, 1.5rem);
+    color: #000;
+    text-align: center;
+    padding: 0 10px;
+    width: 100%;
+    text-shadow: 0 1px 2px rgba(255,255,255,.6);
+}
+/* Fund Me Section */
+.fundme {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #a19e9e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    min-height: 300px;
+    margin-top: 20px;
+}
+.fundme .headfundme {
+    margin-bottom: 20px;
+    min-width: 150px;
+    background-color: rgb(6, 30, 248);
+    padding: 10px 14px;
+    border: 1px solid #000000;
+    border-radius: 19px;
+}
+.fundme .headfundme p {
+    font-size: clamp(1.125rem, 1.5vw + .75rem, 1.75rem);
+    font-weight: bold;
+    color: #000; /* Red color */
+}
+.fundme .fundme-content {
+    display: grid; gap: 16px; width: 100%;
+    grid-template-columns: 1fr; align-items: start;
+}
+.fundme .left-side,
+.fundme .right-side {
+    width: 100%;
+    padding: 20px;
+    background-color: #7d7878; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+}
+.fundme .right-side{
+    background-color: #a19e9e;
+    box-shadow: 0 0 0 rgba(245, 243, 243, 0.1);
+    margin-top: 0;
+}
+.fundme .right-side img {
+    width: 100%; max-width: 560px; height: auto;
+    border-radius: 10px; /* Matches container's rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+}
+.fundme .left-side{
+    margin: 0;
+}
+.fundme .left-side .define {
+    font-size: clamp(1rem, .5vw + .9rem, 1.25rem);
+    color: #212121; /* Dark gray text */
+    line-height: 1.6;
+}
+.fundme .left-side ul {
+    list-style-type: disc;
+    padding-left: 1.25rem; text-align: left; max-width: 56rem; margin: .5rem auto 0;
+}
+.fundme .left-side li {
+    margin-bottom: 10px;
+    font-size: clamp(1rem, .5vw + .9rem, 1.25rem);
+    line-height: 1.6;
+    color: #212121; /* Dark gray text */
+}
+.fundme button {
+    align-self: center; /* Center horizontally */
+    margin-top: auto; /* Pushes button to the bottom */
+    margin-bottom: 20px; /* Space from the bottom edge */
+    border-radius: 10px;
+    background-color: #D32F2F; /* Red */
+    color: #FFFFFF;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.fundme button:hover {
+    background-color: #B71C1C; /* Darker red */
+}
+/* Footer Styling */
+footer {
+    background-color: var(--brand);
+    color: #FFFFFF;
+    padding: 20px 0;
+    text-align: center;
+    display: flex; /* Make footer a flex container */
+    flex-direction: column; /* Stack children vertically */
+    min-height: 200px; /* Ensure enough height for layout */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    flex-grow: 1; /* Allow content to take available space */
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #F57C00;
+}
+
+.visually-hidden{ position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+/* responsive part */
+
+
+/* Breakpoints: 576, 768, 992, 1200 */
+@media (max-width: 767.98px){
+    .nav-left.login { 
+        display: none !important; 
+    }
+    /* Keep hamburger on the left and account icon on the far right */
+    .nav { grid-template-columns: auto 1fr auto; }
+    .nav-toggle { justify-self: start; }
+    .nav-right.login { justify-self: end; }
+}
+@media (min-width: 576px){
+    .nav-list.open{ align-items: stretch; }
+}
+
+@media (min-width: 768px){
+    .nav{ grid-template-columns: auto 1fr auto; }
+    .nav-toggle{ display:none; }
+    .nav-left.login{ display: flex; }
+    .nav-list{ display: flex !important; flex-direction: row; justify-content: center; }
+
+    .passive-report .bothside{ grid-template-columns: 1fr 1fr; padding-inline: 2rem; }
+    .passive-report .left-side .define { font-size: 1.0625rem; }
+    .fundme .fundme-content{ grid-template-columns: 1fr 1fr; align-items: center; padding-inline: 1rem; }
+}
+
+@media (min-width: 992px){
+    .headline{ min-height: 88px; }
+    .report{ width: min(100%, 1000px); }
+    .slide .caption{ font-size: 1.25rem; }
+}
+
+@media (min-width: 1200px){
+    .nav{ padding: .4rem 1rem; }
+    .fundme .right-side img{ max-width: 640px; }
+}
+

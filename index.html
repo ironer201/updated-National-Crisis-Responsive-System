@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Crsis Response</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="color-scheme" content="light">
+</head>
+<body>
+    <header>
+        <nav class="nav" aria-label="Primary">
+            <div class="nav-left login"><a href="index.html" aria-label="Home"><img src="picture/NCR-logo.png" alt=""></a></div>
+            <button class="nav-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="primary-nav" class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="passive.html">Passive report</a></li>
+                <li><a href="author.html">Authorities</a></li>
+                <li><a href="Donation.html">Fund Us</a></li>
+                <li><a href="statistics.html">Statistics</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-right login">
+                <a href="login.html" aria-label="Login"><span class="login-icon"><i class="fa-solid fa-user"></i></span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero headline -->
+        <section class="headline" aria-labelledby="site-title">
+            <h1 id="site-title">National Crsis Response</h1>
+        </section>
+
+        <!-- Quick report -->
+        <section class="quick-report" aria-labelledby="quick-report-title">
+            <p class="report-head" id="quick-report-title"><span>Write your emergency Report</span></p>
+            <form action="" class="report" id="reportForm">
+                <label class="visually-hidden" for="text">Your emergency report</label>
+                <textarea name="Message" placeholder="Write your report" cols="50" rows="8" id="quick-report" required></textarea>
+                <button id="submitquick" type="submit">Submit</button>
+            </form>
+            <!-- <div class="report-meta">
+                <input class="check" type="checkbox" id="location" name="location" value="location">
+                <label for="location">Share my current location</label>
+            </div> -->
+            <!-- pop-up -->
+            <div id="popup" class="popup" role="status" aria-live="polite">
+                <p>Your report has been submitted!</p>
+            </div>
+        </section>
+
+        <!-- Passive report info -->
+        <section class="passive-report" aria-labelledby="passive-title">
+            <h2 id="passive-title">Passive Report</h2>
+            <div class="bothside">
+                <div class="left-side">
+                    <p class="define">
+                        <span>A passive reporting system allows victims and witnesses to anonymously report crimes like extortion, harassment, and eve-teasing, ensuring more incidents are documented.<br> By analyzing reports, authorities can identify crime patterns and take preventive measures. Increased accountability pushes law enforcement to act, while faster response times help reduce recurring offenses, making communities safer.</span>
+                    </p>
+                </div>
+                <div class="right-side">
+                    <ul>
+                        <li>Enables anonymous complaints, ensuring more cases are reported.</li>
+                        <li>Helps track crime patterns for better preventive actions.</li>
+                        <li>Increases accountability, pushing authorities to act.</li>
+                        <li>Improves response time, reducing recurring crimes.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="btn1">
+                <button onclick="location.href='passive.html'" type="button">Passive report</button>
+            </div>
+        </section>
+
+        <!-- Slideshow -->
+        <section class="slideshow-container" aria-label="Highlights slideshow">
+            <div class="slide">
+                <img src="picture/tanzir.jpg" alt="Tanzir fashion garments">
+                <p class="caption">Tanzir fahsion germents</p>
+            </div>
+            <div class="slide">
+                <img src="picture/landerison.jpg" alt="Land erosion">
+                <p class="caption">Land errison</p>
+            </div>
+            <div class="slide">
+                <img src="picture/rana.jpg" alt="Rana Plaza tragedy">
+                <p class="caption">Rana plaza tragady</p>
+            </div>
+        </section>
+
+        <!-- Fund us -->
+        <section class="fundme" aria-labelledby="fund-title">
+            <div class="headfundme">
+                <p id="fund-title">Fund us</p>
+            </div>
+            <div class="fundme-content">
+                <div class="left-side">
+                    <p class="define">
+                        <span>Our platform relies on donations to keep running.</span>
+                    </p>
+                    <ul>
+                        <li>Donations help us maintain our services.</li>
+                        <li>Supports a safe space for victims and witnesses to report crimes.</li>
+                        <li>Contributes to making communities safer and more secure.</li>
+                    </ul>
+                </div>
+                <div class="right-side" aria-hidden="true">
+                    <img src="picture/fundme.jpeg" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing a platform for reporting and managing crises efficiently and effectively.</p>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@crisisresponse.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>&copy; National Crisis Response | Designed by The ironer201</p>
+        </div>
+    </footer>
+
+    <script src="landing.js" type="module"></script>
+</body>
+</html>

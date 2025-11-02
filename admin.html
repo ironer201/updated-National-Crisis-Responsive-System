@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="nav.css"> -->
+    <link rel="stylesheet" href="admin.css">
+    <title>admin panel</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-left login"><a href="index.html" aria-label="Home"><img src="picture/NCR-logo.png" alt=""></a></div>
+        </div>
+        <ul>
+            <li><a href="#">Quick Report</a></li>
+            <li><a href="passive_admin.html">Passive report</a></li>
+            <li><a href="volunteer_admin.html">Volunteer</a></li>
+        </ul>
+        <div class="login">
+            <a href="#"><span class="login-icon"><i class="fa-solid fa-user"></i></span></a>
+        </div>
+    </nav>
+    <div class="table-quickreport">
+      <table id="reportTable">
+        <thead>
+          <tr>
+              <th id="id">ID</th>
+              <th id="location">Report</th>
+              <th id="report">Location</th>
+              <th id="date">Date</th>
+              <th id="time">Time</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <!-- New rows will be added here -->
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="test">
+      <form id="reportForm">
+        <textarea name="text" id="text" placeholder="Enter your text" required></textarea>
+        <button id="submit">Submit</button>
+      </form>
+    </div> -->
+
+    <script type="module">
+  ;(async function() {
+    // import supabase
+    var mod = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+    var createClient = mod.createClient;
+
+    var SUPABASE_URL = 'https://hrfwntixjesvexqjeviv.supabase.co';
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyZndudGl4amVzdmV4cWpldml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MjE3MTQsImV4cCI6MjA3NDk5NzcxNH0.UaiP3UhfqS6Li6JSAEjsJkAYPfvsqkSgsSGoatOstxs';
+
+    var supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    var tableName = 'quick_report';
+
+    // <-- DECLARE the columns you want (exactly as in your DB)
+    var COLUMNS = ['ID', 'report', 'location', 'date', 'time'];
+
+    // DOM references
+    var table = document.getElementById('reportTable');
+    if (!table) {
+      console.error('reportTable element not found');
+      return;
+    }
+    var thead = table.querySelector('thead');
+    var tbody = table.querySelector('tbody');
+
+    // Build the table header using classic loops + concatenation (no template literals)
+    function buildHeader() {
+      // clear
+      thead.innerHTML = '';
+      var tr = document.createElement('tr');
+      for (var i = 0; i < COLUMNS.length; i++) {
+        var th = document.createElement('th');
+        th.setAttribute('ID', COLUMNS[i]); // keep IDs if you want
+        // For visible label, use the column name (you can change this mapping)
+        th.textContent = COLUMNS[i];
+        tr.appendChild(th);
+      }
+      thead.appendChild(tr);
+    }
+
+    // Render rows using classic loops
+    function renderRows(rows) {
+      tbody.innerHTML = '';
+      if (!rows || rows.length === 0) {
+        var trEmpty = document.createElement('tr');
+        var tdEmpty = document.createElement('td');
+        tdEmpty.setAttribute('colspan', COLUMNS.length);
+        tdEmpty.textContent = 'No data found';
+        trEmpty.appendChild(tdEmpty);
+        tbody.appendChild(trEmpty);
+        return;
+      }
+
+      for (var r = 0; r < rows.length; r++) {
+        var row = rows[r];
+        var tr = document.createElement('tr');
+        for (var c = 0; c < COLUMNS.length; c++) {
+          var colName = COLUMNS[c];
+          var td = document.createElement('td');
+          // Use nullish coalescing fallback manually (avoid modern syntax if you prefer)
+          var val = row[colName];
+          if (val === null || typeof val === 'undefined') {
+            td.textContent = '';
+          } else {
+            td.textContent = String(val);
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+    }
+
+    // Load data from Supabase specifying columns by name
+    async function loadData() {
+      try {
+        // Build the select string like "id,report,location,date,time"
+        var selectStr = '';
+        for (var i = 0; i < COLUMNS.length; i++) {
+          if (i > 0) selectStr += ',';
+          selectStr += COLUMNS[i];
+        }
+
+        var resp = await supabase
+          .from(tableName)
+          .select(selectStr)
+          .order('ID', { ascending: false });
+
+        // supabase v2 returns { data, error }
+        var data = resp.data;
+        var error = resp.error;
+
+        if (error) {
+          console.error('Supabase error:', error);
+          tbody.innerHTML = '';
+          var trErr = document.createElement('tr');
+          var tdErr = document.createElement('td');
+          tdErr.setAttribute('colspan', COLUMNS.length);
+          tdErr.textContent = 'Error loading data (check console)';
+          trErr.appendChild(tdErr);
+          tbody.appendChild(trErr);
+          return;
+        }
+
+        // If rows exist but returned columns are missing, data might have nulls
+        renderRows(data || []);
+      } catch (ex) {
+        console.error('Unexpected error in loadData:', ex);
+        tbody.innerHTML = '';
+        var trEx = document.createElement('tr');
+        var tdEx = document.createElement('td');
+        tdEx.setAttribute('colspan', COLUMNS.length);
+        tdEx.textContent = 'Unexpected error (check console)';
+        trEx.appendChild(tdEx);
+        tbody.appendChild(trEx);
+      }
+    }
+
+    // Build header first
+    buildHeader();
+
+    // Initial load and interval refresh
+    await loadData();
+    setInterval(function() {
+      loadData();
+    }, 5000);
+
+  })();
+</script>
+
+
+
+</body>
+</html>

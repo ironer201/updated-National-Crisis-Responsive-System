@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorities</title>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="volunteer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="nav" aria-label="Primary">
+            <div class="login nav-left"><a href="landing.html" aria-label="Home"><span>Logo</span></a></div>
+            <button class="nav-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars icon-bars" aria-hidden="true"></i>
+                <i class="fa-solid fa-times icon-close" aria-hidden="true"></i>
+            </button>
+            <ul id="primary-nav" class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="passive.html">Passive report</a></li>
+                <li><a href="author.html">Authorities</a></li>
+                <li><a href="Donation.html">Fund Us</a></li>
+                <li><a href="statistics.html">Statistics</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="login nav-right">
+                <a href="login.html" aria-label="Login"><span class="login-icon"><i class="fa-solid fa-user"></i></span></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="form-section" aria-labelledby="volunteerTitle">
+                <h1 id="volunteerTitle">Volunteer Registration</h1>
+
+                <form id="volunteerForm" action="#" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Edward William" required />
+                        <span class="hint">Enter your legal name.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+                        <span class="hint">We will send confirmations to this address.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+88 015 123 4567" pattern="^[+0-9 ()-]{7,}$" required />
+                        <span class="hint">Include country code if outside your region.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="notes" name="notes" placeholder="Write Your Present or Perment Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodGroup">Blood group</label>
+                        <select id="bloodGroup" name="bloodGroup" required>
+                            <option value="" disabled selected>Select blood group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                        <span class="hint">Choose your blood type for medical coordination.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="religion">Religion</label>
+                        <select id="religion" name="religion" required>
+                            <option value="" disabled selected>Select a religion</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Christianity">Christianity</option>
+                            <option value="Buddist">Buddist</option>
+                            <option value="Prefer not Say">Prefer not Say</option>
+                        </select>
+                        <span class="hint">Choose the area you can operate in.</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Volunteer role</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>Select a role</option>
+                            <option value="medical">Medical support</option>
+                            <option value="it">IT/Comms</option>
+                            <option value="shelter">Shelter assistance</option>
+                            <option value="fundraising">Fundraising</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="hint">Pick the role that best matches your skills.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Availability</label>
+                        <select id="availability" name="availability" required>
+                            <option value="" disabled selected>Select availability</option>
+                            <option value="immediate">Immediate (within 24h)</option>
+                            <option value="week">Within a week</option>
+                            <option value="month">Within a month</option>
+                            <option value="on-call">On call</option>
+                        </select>
+                        <span class="hint">When can you start?</span>
+                    </div>
+                    <div class="form-actions">
+                        <button type="reset" class="btn" aria-label="Clear form">Clear</button>
+                        <button type="submit" class="btn primary" aria-label="Submit registration">Submit</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>We are dedicated to providing a platform for reporting and managing crises efficiently and effectively.</p>
+            </div>
+        
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@crisisresponse.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>&copy; National Crisis Response | Designed by The ironer201</p>
+        </div>
+    </footer>
+    <script type="module">
+        // Supabase client (replace with your values)
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+        const SUPABASE_URL = 'https://hrfwntixjesvexqjeviv.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyZndudGl4amVzdmV4cWpldml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MjE3MTQsImV4cCI6MjA3NDk5NzcxNH0.UaiP3UhfqS6Li6JSAEjsJkAYPfvsqkSgsSGoatOstxs';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Helpers
+        const $ = (id) => document.getElementById(id);
+        const form = $('volunteerForm');
+
+        function ensureStatusEl() {
+            let el = document.getElementById('formStatus');
+            if (!el) {
+                el = document.createElement('div');
+                el.id = 'formStatus';
+                el.setAttribute('role', 'status');
+                el.style.marginTop = '0.75rem';
+                el.style.fontSize = '0.95rem';
+                form.after(el);
+            }
+            return el;
+        }
+        function setStatus(message, type = 'info') {
+            const el = ensureStatusEl();
+            el.textContent = message;
+            el.style.color = type === 'error' ? '#b00020' : type === 'success' ? '#0a7d2a' : '#333';
+        }
+
+        async function saveVolunteer(payload) {
+            const { error } = await supabase.from('volunteers').insert(payload);
+            if (error) throw error;
+        }
+
+        form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!form.reportValidity()) return;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn?.textContent;
+            submitBtn && (submitBtn.disabled = true, submitBtn.textContent = 'Submitting...');
+
+            const payload = {
+                full_name: $('fullName')?.value.trim() || null,
+                email: $('email')?.value.trim().toLowerCase() || null,
+                phone: $('phone')?.value.trim() || null,
+                address: $('notes')?.value.trim() || null,
+                bloodGroup: $('bloodGroup')?.value || null,
+                religion: $('religion')?.value || null,
+                role: $('role')?.value || null,
+                availability: $('availability')?.value || null,
+                created_at: new Date().toISOString()
+            };
+
+            try {
+                    await saveVolunteer(payload);
+                    setStatus('Registration submitted successfully.', 'success');
+                    alert('✅ Registration submitted successfully!');
+                    form.reset();
+                } catch (err) {
+                    console.error(err);
+                    setStatus('Could not submit registration. Please try again.', 'error');
+                    alert('❌ Could not submit registration. Please try again.');
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }
+                }
+        
+        });
+
+        // Optional: clear status on form reset
+        form?.addEventListener('reset', () => setStatus(''));
+
+    </script>
+</body>
+</html>

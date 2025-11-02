@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & sign up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="login.css">
+    <!-- <style>
+        
+    </style> -->
+</head>
+<body>
+    <nav>
+        <div class="nav-left login"><a href="index.html" aria-label="Home"><img src="picture/NCR-logo.png" alt=""></a></div>
+          <!-- Add this toggle button -->
+            <button class="nav-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        <ul id="primary-nav" class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="passive.html">Passive report</a></li>
+            <li><a href="author.html">Authorities</a></li>
+            <li><a href="Donation.html">Fund Us</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="login">
+            <a href="#"><span class="login-icon"><i class="fa-solid fa-user"></i></span></a>
+        </div>
+    </nav>
+    <!-- main body -->
+     <div class="full">
+        <div class="container">
+            <div class="form-container">
+                <form class="login-form">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <label for="toggle" class="toggle-label"><a href="volunteer.html">Want to be a volunteer? Sign in</a></label>
+                    <!-- <div class="test">
+                        <div class="user">
+                            <a href="">User</a>
+                        </div>
+                        <div class="admin">
+                            <a href="admin.html">Admin</a>
+                        </div>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+     </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.querySelector('nav');
+  const navList = document.getElementById('primary-nav');
+
+  if (menuToggle && navList) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navList.classList.toggle('open');
+      nav.classList.toggle('is-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+});
+
+
+    (() => {
+        'use strict';
+        // Fixed admin credentials (demo only)
+        const ADMIN_EMAIL = 'touki@gmail.com';
+        const ADMIN_PASSWORD = 'touki';
+        // Support multiple admins
+        const ADMINS = new Map([[ADMIN_EMAIL.toLowerCase(), ADMIN_PASSWORD]]);
+        [
+            // Add more admin credentials here:
+            // ['admin2@example.com', 'pass2'],
+            // ['admin3@example.com', 'pass3'],
+        ].forEach(([e, p]) => ADMINS.set(e.toLowerCase(), p));
+
+        // Intercept submit to handle any admin in ADMINS
+        const preForm = document.querySelector('.login-form');
+        if (preForm) {
+            preForm.addEventListener('submit', (e) => {
+                const email = (document.getElementById('email')?.value || '').trim().toLowerCase();
+                const password = document.getElementById('password')?.value || '';
+                const expected = ADMINS.get(email);
+
+                if (expected && password === expected) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    sessionStorage.setItem('authRole', 'admin');
+                    window.location.href = 'admin.html';
+                }
+            });
+        }
+
+        const form = document.querySelector('.login-form');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = (document.getElementById('email')?.value || '').trim().toLowerCase();
+            const password = document.getElementById('password')?.value || '';
+
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('authRole', 'admin');
+                window.location.href = 'admin.html';
+            } else {
+                alert('Invalid email or password.');
+            }
+        });
+    })();
+</script>
+    
+</body>
+</html>
