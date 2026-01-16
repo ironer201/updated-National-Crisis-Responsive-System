@@ -2,8 +2,8 @@
 (function () {
   // 1) Supabase dynamic loader and client init
   // Replace these with your real project credentials
-  const SUPABASE_URL = 'https://hrfwntixjesvexqjeviv.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyZndudGl4amVzdmV4cWpldml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MjE3MTQsImV4cCI6MjA3NDk5NzcxNH0.UaiP3UhfqS6Li6JSAEjsJkAYPfvsqkSgsSGoatOstxs';
+  const SUPABASE_URL = 'Supabse-URL';
+  const SUPABASE_ANON_KEY = 'ANON-KEY';
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
