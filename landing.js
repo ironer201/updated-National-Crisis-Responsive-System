@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
 //Supabase
 // Supabase client (replace with your project values)
 
-  const SUPABASE_URL = 'https://hrfwntixjesvexqjeviv.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhyZndudGl4amVzdmV4cWpldml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0MjE3MTQsImV4cCI6MjA3NDk5NzcxNH0.UaiP3UhfqS6Li6JSAEjsJkAYPfvsqkSgsSGoatOstxs';
+  const SUPABASE_URL = 'Supabase-URL';
+  const SUPABASE_ANON_KEY = 'ANON-KEY';
 
   // ✅ Initialize Supabase client immediately
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -93,4 +93,5 @@ document.addEventListener("DOMContentLoaded", function() {
         submitBtn.textContent = prevText;
       }
     });
+
   });
